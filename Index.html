@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #ffd700;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        .container {
+            padding: 2rem;
+            margin-top: 80px; /* To avoid overlap with the fixed navbar */
+        }
+        .container#inicio {
+            background-color: #f8f9fa;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            box-sizing: border-box;
+        }
+        .button {
+            background-color: #ffd700;
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        .property-status {
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            width: 100px;
+            border-radius: 5px;
+        }
+        .status-available {
+            background-color: green;
+        }
+        .status-reserved {
+            background-color: yellow;
+            color: black;
+        }
+        .status-sold {
+            background-color: red;
+        }
+        .status-offsystem {
+            background-color: grey;
+        }
+        .property {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        .property-info {
+            flex: 1;
+            padding: 1rem;
+        }
+        .property-photos {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .property-photos img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 0.5rem;
+            cursor: pointer;
+        }
+        .search-bar {
+            margin-bottom: 2rem;
+        }
+        .search-bar input {
+            width: calc(100% - 2rem);
+            padding: 1rem;
+        }
+        .download-button {
+            background-color: #ffd700;
+            color: white;
+            padding: 0.5rem;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin-top: 0.5rem;
+        }
+        .delete-button {
+            background-color: red;
+            color: white;
+            padding: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<link rel="shortcut icon" href="Imagenes/LOGO FINAL ADOBE ILUSTRATOR ALIANZA GOLD SIN FONDO.png" type="image/x-icon">
+<body>
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#registro">Registro de propiedades</a>
+        <a href="#disponibles">Propiedades disponibles</a>
+    </nav>
+
+    <div class="container" id="inicio">
+        <img src="Imagenes/LOGO FINAL ADOBE ILUSTRATOR ALIANZA GOLD SIN FONDO.png" width="100">
+        <h1>Tu nueva Herramienta de trabajo</h1>
+        <p>En el Gold Center encontrarás diversidad de herramientas que facilitarán tu trabajo como asesor inmobiliario, desde el registro de propiedades hasta la sección de buscar propiedades disponibles, además de sus fotos, videos y material publicitario.</p>
+    </div>
+
+    <div class="container" id="registro">
+        <h2>Registro de propiedades</h2>
+        <form id="propertyForm">
+            <div class="form-group">
+                <label for="agentName">Nombre del asesor:</label>
+                <input type="text" id="agentName" name="agentName" required>
+            </div>
+            <div class="form-group">
+                <label for="agentId">Cédula de identidad del asesor:</label>
+                <input type="text" id="agentId" name="agentId" required>
+            </div>
+            <div class="form-group">
+                <label for="propertyTitle">Título del inmueble:</label>
+                <input type="text" id="propertyTitle" name="propertyTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="propertyLocation">Ubicación exacta:</label>
+                <input type="text" id="propertyLocation" name="propertyLocation" required>
+            </div>
+            <div class="form-group">
+                <label for="propertySize">Metros cuadrados:</label>
+                <input type="number" id="propertySize" name="propertySize" required>
+            </div>
+            <div class="form-group">
+                <label for="propertyAge">Años de antigüedad:</label>
+                <input type="number" id="propertyAge" name="propertyAge" required>
+            </div>
+            <div class="form-group">
+                <label for="propertyDescription">Descripción del inmueble:</label>
+                <textarea id="propertyDescription" name="propertyDescription" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="transactionType">Tipo de transacción:</label>
+                <select id="transactionType" name="transactionType" required>
+                    <option value="Venta">Venta</option>
+                    <option value="Alquiler">Alquiler</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="propertyPrice" id="propertyPriceLabel">Precio:</label>
+                <input type="text" id="propertyPrice" name="propertyPrice" required pattern="^\d{1,3}(,\d{3})*$" title="Ingrese un número válido con comas">
+            </div>
+            <div class="form-group">
+                <label for="ownerName">Nombre del propietario:</label>
+                <input type="text" id="ownerName" name="ownerName" required>
+            </div>
+            <div class="form-group">
+                <label for="captureDate">Fecha de captación:</label>
+                <input type="date" id="captureDate" name="captureDate" required>
+            </div>
+            <div class="form-group">
+                <label for="propertyStatus">Estado del inmueble:</label>
+                <select id="propertyStatus" name="propertyStatus" required>
+                    <option value="available" class="status-available">Disponible</option>
+                    <option value="reserved" class="status-reserved">Reservado</option>
+                    <option value="sold" class="status-sold">Vendido</option>
+                    <option value="offsystem" class="status-offsystem">Fuera de sistema</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="propertyPhotos">Subir fotos del inmueble:</label>
+                <input type="file" id="propertyPhotos" name="propertyPhotos" multiple required>
+            </div>
+            <button type="submit" class="button">Registrar inmueble</button>
+        </form>
+    </div>
+
+    <div class="container" id="disponibles">
+        <h2>Propiedades disponibles</h2>
+        <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Buscar propiedades...">
+        </div>
+
+        <div id="propertyList">
+            <!-- Las propiedades cargadas aparecerán aquí -->
+        </div>
+    </div>
+
+    <script>
+        const propertyForm = document.getElementById('propertyForm');
+        const propertyList = document.getElementById('propertyList');
+        const searchBar = document.getElementById('searchBar');
+        const transactionType = document.getElementById('transactionType');
+        const propertyPriceLabel = document.getElementById('propertyPriceLabel');
+
+        transactionType.addEventListener('change', function() {
+            if (transactionType.value === 'Alquiler') {
+                propertyPriceLabel.textContent = 'Precio de Alquiler:';
+            } else {
+                propertyPriceLabel.textContent = 'Precio:';
+            }
+        });
+
+        propertyForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(propertyForm);
+            const propertyData = {
+                id: Date.now().toString(),
+                agentName: formData.get('agentName'),
+                agentId: formData.get('agentId'),
+                propertyTitle: formData.get('propertyTitle'),
+                propertyLocation: formData.get('propertyLocation'),
+                propertySize: formData.get('propertySize'),
+                propertyAge: formData.get('propertyAge'),
+                propertyDescription: formData.get('propertyDescription'),
+                transactionType: formData.get('transactionType'),
+                propertyPrice: formData.get('propertyPrice'),
+                ownerName: formData.get('ownerName'),
+                captureDate: formData.get('captureDate'),
+                propertyStatus: formData.get('propertyStatus'),
+                propertyPhotos: []
+            };
+
+            const files = formData.getAll('propertyPhotos');
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    propertyData.propertyPhotos.push(e.target.result);
+                    if (propertyData.propertyPhotos.length === files.length) {
+                        addProperty(propertyData);
+                        saveProperties();
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function addProperty(propertyData) {
+            const propertyElement = document.createElement('div');
+            propertyElement.className = 'property';
+            propertyElement.dataset.id = propertyData.id;
+            propertyElement.innerHTML = `
+                <div class="property-info">
+                    <h3>${propertyData.propertyTitle}</h3>
+                    <p>Asesor: ${propertyData.agentName}</p>
+                    <p>Ubicación: ${propertyData.propertyLocation}</p>
+                    <p>Metros cuadrados: ${propertyData.propertySize}</p>
+                    <p>Años de antigüedad: ${propertyData.propertyAge}</p>
+                    <p>${propertyData.propertyDescription}</p>
+                    <p>Tipo de transacción: ${propertyData.transactionType}</p>
+                    <p>Precio: ${propertyData.propertyPrice}</p>
+                    <p>Fecha de captación: ${propertyData.captureDate}</p>
+                    <select class="property-status status-${propertyData.propertyStatus}" onchange="updatePropertyStatus(this)">
+                        <option value="available" ${propertyData.propertyStatus === 'available' ? 'selected' : ''} class="status-available">Disponible</option>
+                        <option value="reserved" ${propertyData.propertyStatus === 'reserved' ? 'selected' : ''} class="status-reserved">Reservado</option>
+                        <option value="sold" ${propertyData.propertyStatus === 'sold' ? 'selected' : ''} class="status-sold">Vendido</option>
+                        <option value="offsystem" ${propertyData.propertyStatus === 'offsystem' ? 'selected' : ''} class="status-offsystem">Fuera de sistema</option>
+                    </select>
+                    <button class="delete-button" onclick="confirmDelete(this)">Eliminar</button>
+                </div>
+                <div class="property-photos">
+                    ${propertyData.propertyPhotos.map(photo => `
+                        <div class="photo-container">
+                            <img src="${photo}" onclick="openPhoto('${photo}')">
+                            <button class="download-button" onclick="downloadPhoto('${photo}')">Descargar foto</button>
+                        </div>`).join('')}
+                </div>
+            `;
+            propertyList.appendChild(propertyElement);
+        }
+
+        function updatePropertyStatus(selectElement) {
+            const propertyElement = selectElement.closest('.property');
+            const propertyStatus = selectElement.value;
+            selectElement.className = `property-status status-${propertyStatus}`;
+            saveProperties();
+        }
+
+        function confirmDelete(buttonElement) {
+            if (confirm("¿ESTÁS SEGURO DE ELIMINAR ESTE INMUEBLE?")) {
+                deleteProperty(buttonElement);
+            }
+        }
+
+        function deleteProperty(buttonElement) {
+            const propertyElement = buttonElement.closest('.property');
+            propertyElement.remove();
+            saveProperties();
+        }
+
+        function openPhoto(photoUrl) {
+            const newWindow = window.open();
+            newWindow.document.write(`
+                <img src="${photoUrl}" style="width:100%;height:auto;">
+                <button class="download-button" onclick="downloadPhoto('${photoUrl}')">Descargar foto</button>
+            `);
+        }
+
+        function downloadPhoto(photoUrl) {
+            const link = document.createElement('a');
+            link.href = photoUrl;
+            link.download = 'foto_inmueble';
+            link.click();
+        }
+
+        searchBar.addEventListener('input', function() {
+            const searchTerm = searchBar.value.toLowerCase();
+            const properties = document.querySelectorAll('.property');
+            properties.forEach(property => {
+                const title = property.querySelector('.property-info h3').textContent.toLowerCase();
+                const location = property.querySelector('.property-info p:nth-child(3)').textContent.toLowerCase();
+                if (title.includes(searchTerm) || location.includes(searchTerm)) {
+                    property.style.display = 'flex';
+                } else {
+                    property.style.display = 'none';
+                }
+            });
+        });
+
+        function saveProperties() {
+            const properties = Array.from(propertyList.children).map(property => ({
+                id: property.dataset.id,
+                agentName: property.querySelector('.property-info p:nth-child(2)').textContent.split(': ')[1],
+                propertyTitle: property.querySelector('.property-info h3').textContent,
+                propertyLocation: property.querySelector('.property-info p:nth-child(3)').textContent.split(': ')[1],
+                propertySize: property.querySelector('.property-info p:nth-child(4)').textContent.split(': ')[1],
+                propertyAge: property.querySelector('.property-info p:nth-child(5)').textContent.split(': ')[1],
+                propertyDescription: property.querySelector('.property-info p:nth-child(6)').textContent,
+                transactionType: property.querySelector('.property-info p:nth-child(7)').textContent.split(': ')[1],
+                propertyPrice: property.querySelector('.property-info p:nth-child(8)').textContent.split(': ')[1],
+                captureDate: property.querySelector('.property-info p:nth-child(9)').textContent.split(': ')[1],
+                propertyStatus: property.querySelector('.property-status').value,
+                propertyPhotos: Array.from(property.querySelectorAll('.property-photos img')).map(img => img.src)
+            }));
+            localStorage.setItem('properties', JSON.stringify(properties));
+        }
+
+        function loadProperties() {
+            const properties = JSON.parse(localStorage.getItem('properties')) || [];
+            properties.forEach(addProperty);
+        }
+
+        window.addEventListener('load', loadProperties);
+    </script>
+</body>
+</html>
+
